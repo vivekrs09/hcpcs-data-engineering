@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Clinical Table Search Service</title>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-59GQ6JK');</script>
+<!-- End Google Tag Manager -->
+
+    <link rel="stylesheet" href="/site.min.css">
+    <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700'
+     rel='stylesheet' type='text/css'/>
+    <link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+  </head>
+  <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59GQ6JK" height="0" width="0" style="display:none;visibility:hidden" title="googletagmanager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="sharedHeader"></div>
+
+    <div id="header">
+
+      <a href="https://lhcforms.nlm.nih.gov" title="LHC FHIR Tools" id="site-logo">
+        <img src="/projectLogo.svg" alt="LHC FHIR Tools" />
+      </a>
+      <div id="siteNameBox">
+        <a href="/"><span id=siteName>Clinical Table Search Service</span><br>
+          <span id=tagline>A web API service for use with autocomplete-lhc &amp; LHC-Forms</span></a>
+      </div>
+    </div>
+    <!-- end page header -->
+
+<style>
+  #blankspace {display: none}
+  #fine-print {margin-top: 3em}
+  div.data_versions {
+    margin-top: 3pt;
+  }
+
+  th, td {
+    padding-top: 0.5em;
+    padding-bottom: 0.3em;
+  }
+  th.left {
+    width: 33%;
+  }
+  th.middle {
+    width: 5%;
+  }
+
+  div.sub-desc {
+    margin-top:0.15em;
+    color:#555555;
+    /*
+    margin-left: 1em;
+    font-size: 90%;
+    */
+  }
+
+  a.api_title {
+    font-size: 115%;
+    font-family: Arial;
+  }
+
+  /* The box that groups input, source code, and customize */
+  div.acim_container {
+    display: flex;
+  }
+
+  div.acim_input {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.1em;
+  }
+
+  /* The box that groups "Source code" and "Customize" */
+  div.acim_links_container {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* The "Customize" link. It's displayed in index.html but not the individual doc pages */
+  div.acim_customize {
+    display: block;
+    margin-top: 3px;
+  }
+
+  button.link, button.link:focus, button.link:active {
+    display: inline;
+    margin-left: 0em;
+  }
+
+  a.intro_link {
+    color: blue
+  }
+</style>
+
+    <div id="content">
+      <p><b>Clinical Table Search Service</b> is a web
+        service which software programs can use for querying clinical data
+        tables.  The API for each table is designed to work with our <a class="intro_link"
+        href="http://lhncbc.github.io/autocomplete-lhc/">form field
+        autocompletion package</a>, but can be used by other programs as well.
+        The tables may also be accessed through <a class="intro_link" href="/fhir.html">FHIR&reg; APIs</a>.
+        Check out the <a class="intro_link" href="/about.html">overview</a> page and
+        <a class="intro_link" href="./faq.html">FAQ</a> page for more details (including terms of use),
+        and please
+        <a class="intro_link" href="https://support.nlm.nih.gov/support/create-case/?from=https://clinicaltables.nlm.nih.gov/">contact us</a>
+        if you have further questions or if there are other clinical data tables
+        you would like to see here.
+        There is also an <a class="intro_link" href="./faq.html#annoucements">annoucements</a> list
+        for staying informed about changes.</p>
+
+      <!--[if lt IE 9]>
+      <p class=alert><b>Note:</b> It appears you are using an unsupported version of the IE
+      browser. The demos on this website will not work properly with IE 8 or
+      below.</p>
+      <![endif]-->
+
+      <h2 style="font-weight: normal">Connectable Clinical Tables</h2>
+      <p style="margin-bottom: 0">What follows is a list of currently available tables with links to
+        instructions for the APIs for programmatic access, and an example
+        autocompleter for each table which uses that table's API.</p>
+
+      <p style="margin-top: 5px">Some of the data sets that we serve are stable (e.g., ICD-9-CM), while
+         others are updated more frequently (e.g., ClinVar). We strive to keep our data up-to-date
+         with respect to the data sources; in most cases it should be less than a month behind.
+         Please refer to the "Details" column below for more information on a specific API's data
+         version or date.</p>
+
+            <script
+       src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js"></script>
+
+
+      <table>
+        <thead>
+          <tr>
+            <th class="left">Table Description</th>
+            <th class="middle">Try It</th>
+            <th>Details</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><a class="api_title" href="apidoc/hcpcs/v3/doc.html">HCPCS</a>
+            <div class="sub-desc">Healthcare Common Procedure Coding System</div>
+          </td>
+          <td>
+                        <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="hcpcs" placeholder="Code or words">
+
+                    <script>
+                      new Def.Autocompleter.Search('hcpcs', '/api/hcpcs/v3/search',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Description']});
+
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="hcpcs" placeholder="Code or words">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('hcpcs', '/api/hcpcs/v3/search',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Description']});
+
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=hcpcs">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+          </td>
+          <td>From <a href="https://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets/Alpha-Numeric-HCPCS.html">CMS</a>
+            <div class="data_versions">Data version: October 2026; 8,938 records</div>
+
+          </td>
+        </tr>
+        <tr>
+          <td><a class="api_title" href="apidoc/hpo/v3/doc.html">Human Phenotype Ontology</a>
+          </td>
+          <td>
+                        <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="hpo" placeholder="Code or words">
+
+                    <script>
+                      new Def.Autocompleter.Search('hpo', '/api/hpo/v3/search',
+ {tableFormat: true, valueCols: [0, 1], colHeaders: ['ID', 'Name']});
+
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="hpo" placeholder="Code or words">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('hpo', '/api/hpo/v3/search',
+ {tableFormat: true, valueCols: [0, 1], colHeaders: ['ID', 'Name']});
+
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=hpo">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+          </td>
+          <td>From <a href="https://hpo.jax.org/app/">Human Phenotype Ontology</a>
+            <div class="data_versions">Data version: 2026-09-01; 20,481 records</div>
+
+          </td>
+        </tr>
+
+        <tr>
+            <td><a class="api_title"; href="apidoc/icd10cm/v3/doc.html">ICD-10-CM</a></td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="icd10" placeholder="Code or name">
+
+                    <script>
+                      new Def.Autocompleter.Search('icd10', '/api/icd10cm/v3/search?sf=code,name',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Name']});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="icd10" placeholder="Code or name">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('icd10', '/api/icd10cm/v3/search?sf=code,name',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Name']});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=icd10cm">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From <a href="https://www.cdc.gov/nchs/icd/icd-10-cm.htm">CDC</a>
+              <div class="data_versions">Data version: 2027; 74,879 records</div>
+
+            </td>
+          </tr>
+        <tr>
+          <td><a class="api_title"; href="apidoc/icd11_codes/v3/doc.html">ICD-11 (Codes)</a></td>
+          <td>
+                        <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="icd11_codes" placeholder="Code or title">
+
+                    <script>
+                      new Def.Autocompleter.Search('icd11_codes', '/api/icd11_codes/v3/search?sf=code,title',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Title', 'Type']});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="icd11_codes" placeholder="Code or title">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('icd11_codes', '/api/icd11_codes/v3/search?sf=code,title',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Title', 'Type']});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=icd11_codes">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+          </td>
+          <td>From <a href="https://icd.who.int/en">WHO</a><BR/>
+            ICD-11 stem codes and extension codes.
+            <div class="data_versions">Data version: 2026-01; 35,664 records</div>
+
+          </td>
+        </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/icd9cm_dx/v3/doc.html">ICD-9-CM diagnoses</a></td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="icd9dx" placeholder="Code or name">
+
+                    <script>
+                      new Def.Autocompleter.Search('icd9dx', '/api/icd9cm_dx/v3/search',
+  {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Name']});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="icd9dx" placeholder="Code or name">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('icd9dx', '/api/icd9cm_dx/v3/search',
+  {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Name']});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=icd9cm_dx">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+
+            </td>
+            <td>From <a href="https://www.cms.gov/Medicare/Coding/ICD9ProviderDiagnosticCodes/codes.html">CMS</a>
+              <div class="data_versions">Data version: 32 (2014-10-01); 14,567 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/icd9cm_sg/v3/doc.html">ICD-9-CM procedures</a></td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="icd9sg" placeholder="Code or name">
+
+                    <script>
+                      new Def.Autocompleter.Search('icd9sg', '/api/icd9cm_sg/v3/search',
+  {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Name']});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="icd9sg" placeholder="Code or name">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('icd9sg', '/api/icd9cm_sg/v3/search',
+  {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Name']});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=icd9cm_sg">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From <a href="https://www.cms.gov/Medicare/Coding/ICD9ProviderDiagnosticCodes/codes.html">CMS</a>
+              <div class="data_versions">Data version: 32 (2014-10-01); 3,882 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/loinc/v3/doc.html">LOINC questions and forms</a>
+              <div class="sub-desc">Contains over 2000 medical forms and their associated questions</div>
+            </td>
+            <td>            <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="loinc_item" placeholder="LOINC item">
+
+                    <script>
+                      new Def.Autocompleter.Search('loinc_item',
+ '/api/loinc_items/v3/search?df=text,LOINC_NUM',
+ {tableFormat: true, valueCols: [0, 1], colHeaders: ['Text', 'LOINC Number']});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="loinc_item" placeholder="LOINC item">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('loinc_item',
+ '/api/loinc_items/v3/search?df=text,LOINC_NUM',
+ {tableFormat: true, valueCols: [0, 1], colHeaders: ['Text', 'LOINC Number']});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=loinc_items">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+</td>
+            <td>From <a href="http://loinc.org" >LOINC</a>.  Note that use of LOINC
+              is subject to the LOINC <a href="http://loinc.org/terms-of-use">Terms of
+              Use</a> and in some cases additional <a
+              href="/apidoc/loinc/v3/doc.html#copyright">copyrights</a>.  Form
+              definitions for the forms can also be retrieved and rendered with the <a
+              href="https://lhcforms.nlm.nih.gov">LHC-Forms</a> display widget.
+              <div class="data_versions">Data version: 2.83 (2026-08-19); 112,405 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/procedures/v3/doc.html">Major surgeries and implants</a>
+              <div class="sub-desc">
+                About 280, hand-edited with synonyms; a Regenstrief Institute derivative
+              </div>
+            </td>
+            <td>
+              
+            <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="procedure" placeholder="Procedure">
+
+                    <script>
+                      new Def.Autocompleter.Search('procedure', '/api/procedures/v3/search');
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="procedure" placeholder="Procedure">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('procedure', '/api/procedures/v3/search');
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=procedures">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From the <a href="https://phr-demo.nlm.nih.gov/">NLM PHR</a> &amp;
+              <a href="https://www.regenstrief.org/">Regenstrief Institute</a>.
+              The data is downloadable <a href="/ctss-downloads/cond_proc_download-2026-10-01.json.zip">here</a>.
+
+              <div class="data_versions">Data version: 2026-10-01; 284 records</div>
+
+          </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/conditions/v3/doc.html">Medical conditions</a>
+              <div class="sub-desc">
+               Over 2,400, hand-edited with synonyms; a Regenstrief Institute derivative
+              </div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="condition" placeholder="Condition">
+
+                    <script>
+                      new Def.Autocompleter.Search('condition',
+ '/api/conditions/v3/search');
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="condition" placeholder="Condition">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('condition',
+ '/api/conditions/v3/search');
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=conditions">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From the <a href="https://phr-demo.nlm.nih.gov/">NLM PHR</a> &amp;
+              <a href="https://www.regenstrief.org/">Regenstrief Institute</a>.
+              The data is downloadable <a href="/ctss-downloads/cond_proc_download-2026-10-01.json.zip">here</a>.
+
+              <div class="data_versions">Data version: 2026-10-01; 2,418 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/npi_idv/v3/doc.html">NPI - individuals</a></td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="npi_idv" placeholder="Provider name or NPI">
+
+                    <script>
+                      new Def.Autocompleter.Search(
+  'npi_idv',
+  '/api/npi_idv/v3/search',
+  {tableFormat: true, valueCols: [0, 1],
+    colHeaders: ['Name', 'NPI', 'Type', 'Practice Address']
+  });
+
+
+
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="npi_idv" placeholder="Provider name or NPI">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search(
+  'npi_idv',
+  '/api/npi_idv/v3/search',
+  {tableFormat: true, valueCols: [0, 1],
+    colHeaders: ['Name', 'NPI', 'Type', 'Practice Address']
+  });
+
+
+
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=npi_idv">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+
+            </td>
+            <td>National Provider Identifier (NPI) records for individuals, from
+              <a href="https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination.html">CMS</a>
+              <div class="data_versions">Data version: 2026-10-12; 7,512,094 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/npi_org/v3/doc.html">NPI - organizations</a></td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="npi_org" placeholder="Provider name or NPI">
+
+                    <script>
+                      new Def.Autocompleter.Search(
+  'npi_org',
+  '/api/npi_org/v3/search',
+  {tableFormat: true, valueCols: [0, 1],
+    colHeaders: ['Name', 'NPI', 'Type', 'Practice Address']
+  });
+
+
+
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="npi_org" placeholder="Provider name or NPI">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search(
+  'npi_org',
+  '/api/npi_org/v3/search',
+  {tableFormat: true, valueCols: [0, 1],
+    colHeaders: ['Name', 'NPI', 'Type', 'Practice Address']
+  });
+
+
+
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=npi_org">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>National Provider Identifier (NPI) records for organizations, from
+              <a href="https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination.html">CMS</a>
+              <div class="data_versions">Data version: 2026-10-12; 1,982,161 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/drug_ingredients/v3/doc.html">Prescribable drug ingredients</a>
+              <div class="sub-desc">A subset of RxTerms/RxNorm ingredients</div>
+            </td>
+            <td id=drug_ingredients_example>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="ingredient" placeholder="Ingredient">
+
+                    <script>
+                      new Def.Autocompleter.Search('ingredient',
+ '/api/drug_ingredients/v3/search?df=name,code',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Name', 'Code']});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="ingredient" placeholder="Ingredient">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('ingredient',
+ '/api/drug_ingredients/v3/search?df=name,code',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Name', 'Code']});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=drug_ingredients">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From <a href="https://wwwcf.nlm.nih.gov/umlslicense/rxtermApp/rxTerm.cfm"
+             >RxTerms</a>/<a href="https://mor.nlm.nih.gov/RxMix/">RxMix</a>
+              <div class="data_versions">Data version: 202610; 2,356 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/rxterms/v3/doc.html">RxTerms drug names &amp; strength lists</a>
+              <div class="sub-desc">A prescriber's interface vocabulary. This is an RxNorm derivative.</div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="rxterms" placeholder="Drug name">
+<input type="text" id="drug_strengths" placeholder="Strength list">
+
+                    <script>
+                      new Def.Autocompleter.Prefetch('drug_strengths', []);
+new Def.Autocompleter.Search('rxterms',
+ '/api/rxterms/v3/search?ef=STRENGTHS_AND_FORMS');
+Def.Autocompleter.Event.observeListSelections('rxterms', function() {
+  var drugField = $('#rxterms')[0];
+  var autocomp = drugField.autocomp;
+  var strengths =
+    autocomp.getSelectedItemData()[0].data['STRENGTHS_AND_FORMS'];
+  if (strengths)
+    $('#drug_strengths')[0].autocomp.setListAndField(strengths, '');
+})
+
+                    </script>
+                </div>
+                <div class="acim_links_container" style="margin-top: 1em">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="rxterms" placeholder="Drug name">
+<input type="text" id="drug_strengths" placeholder="Strength list">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Prefetch('drug_strengths', []);
+new Def.Autocompleter.Search('rxterms',
+ '/api/rxterms/v3/search?ef=STRENGTHS_AND_FORMS');
+Def.Autocompleter.Event.observeListSelections('rxterms', function() {
+  var drugField = $('#rxterms')[0];
+  var autocomp = drugField.autocomp;
+  var strengths =
+    autocomp.getSelectedItemData()[0].data['STRENGTHS_AND_FORMS'];
+  if (strengths)
+    $('#drug_strengths')[0].autocomp.setListAndField(strengths, '');
+})
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=rxterms">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From <a href="https://wwwcf.nlm.nih.gov/umlslicense/rxtermApp/rxTerm.cfm"
+             >RxTerms</a>
+              <div class="data_versions">Data version: 202610; 9,358 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/ucum/v3/doc.html">UCUM (The Unified Code for Units of Measure)</a></td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="ucum" placeholder="Code or name">
+
+                    <script>
+                      new Def.Autocompleter.Search('ucum', '/api/ucum/v3/search',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Name'], tokens: ['/', '.'] });
+
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="ucum" placeholder="Code or name">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('ucum', '/api/ucum/v3/search',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Code', 'Name'], tokens: ['/', '.'] });
+
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=ucum">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From <a href="https://ucum.org">UCUM</a>. Note that use is subject to
+            the UCUM <a href="https://ucum.org/license">license</a>.
+              <div class="data_versions">Data version: 2024-01-30; 759 records</div>
+
+            </td>
+          </tr>
+          <tr><td colspan=3 style="background-color: lightgray">Genomics Data Tables</td></tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/variants/v4/doc.html">ClinVar Variants</a>
+              <div class="sub-desc">NCBI ClinVar variant codes</div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                                  <input type="text" id="variant" placeholder="ClinVar Variation ID">
+
+
+                    <script>
+                                      new Def.Autocompleter.Search('variant',
+                  '/api/variants/v4/search' + 
+                  '?df=VariationID,Chromosome,GeneSymbol,HGVS_c,AminoAcidChange,Cytogenetic,dbSNP',
+                  {tableFormat: true, valueCols: [0],
+                   colHeaders: ['Variation&nbsp;ID', 'Chromosome', 'Gene&nbsp;Symbol', 'HGVS&nbsp;(c.)',
+                                'Amino&nbsp;Acid&nbsp;Change', 'Cytogenetic', 'dbSNP&nbsp;ID']
+                  });
+
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+              <input type="text" id="variant" placeholder="ClinVar Variation ID">
+
+              </textarea>
+              <textarea name="js" style="display: none"
+                >                new Def.Autocompleter.Search('variant',
+                  '/api/variants/v4/search' + 
+                  '?df=VariationID,Chromosome,GeneSymbol,HGVS_c,AminoAcidChange,Cytogenetic,dbSNP',
+                  {tableFormat: true, valueCols: [0],
+                   colHeaders: ['Variation&nbsp;ID', 'Chromosome', 'Gene&nbsp;Symbol', 'HGVS&nbsp;(c.)',
+                                'Amino&nbsp;Acid&nbsp;Change', 'Cytogenetic', 'dbSNP&nbsp;ID']
+                  });
+
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=variants">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From NCBI <a href="http://www.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>
+              <div class="data_versions">Data version: 2026-10-05; 4,663,592 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="api_title"; href="apidoc/cosmic/v4/doc.html">COSMIC</a>
+              <div class="sub-desc">From the Sanger Institute</div>
+            </td>
+            <td>
+                            <div class="acim_container">
+                  <div class="acim_input">
+                      <input type="text" id="cosmic" placeholder="Gene Name (e.g., rgs...)">
+
+
+                      <script>
+                        new Def.Autocompleter.Search('cosmic',
+  '/api/cosmic/v4/search',
+  { tableFormat: true,
+    valueCols: [0],
+    colHeaders: ['Mutation&nbsp;ID', 'Gene&nbsp;Name', 'Mutation&nbsp;CDS', 'Mutation&nbsp;AA']
+  });
+
+                      </script>
+                  </div>
+                  <div class="acim_links_container">
+                                  <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="cosmic" placeholder="Gene Name (e.g., rgs...)">
+
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('cosmic',
+  '/api/cosmic/v4/search',
+  { tableFormat: true,
+    valueCols: [0],
+    colHeaders: ['Mutation&nbsp;ID', 'Gene&nbsp;Name', 'Mutation&nbsp;CDS', 'Mutation&nbsp;AA']
+  });
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                      <div class="acim_customize"><a href="/demo.html?db=cosmic">Customize</a></div>
+                  </div>
+                  <div style="float:none"></div>
+              </div>
+
+            </td>
+            <td>Somatic mutation data from <a
+                href="http://grch37-cancer.sanger.ac.uk/cosmic">COSMIC</a>.
+              Please note that it is not permitted to use this service to try to reconstruct
+              the COSMIC data file.  Please see <a
+              href="http://grch37-cancer.sanger.ac.uk/cosmic/license">COSMIC's license
+              page</a> for information about access to the
+              full data file.
+              <div class="data_versions">Data version: v104 (2026-05-19); 107,644,629 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="api_title"; href="apidoc/cosmic_struct/v3/doc.html">COSMIC Structural Genomic Rearrangements</a>
+              <div class="sub-desc">From the Sanger Institute</div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                                  <input type="text" id="cosmic_struct" placeholder="Mutation ID (e.g. 1234...)">
+
+
+                    <script>
+                                      new Def.Autocompleter.Search('cosmic_struct',
+                 '/api/cosmic_struct/v3/search',
+                 {tableFormat: true, valueCols: [0], 
+                   colHeaders: ['Mutation&nbsp;ID', 'Description', 'Mutation&nbsp;Type']
+                 });
+
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+              <input type="text" id="cosmic_struct" placeholder="Mutation ID (e.g. 1234...)">
+
+              </textarea>
+              <textarea name="js" style="display: none"
+                >                new Def.Autocompleter.Search('cosmic_struct',
+                 '/api/cosmic_struct/v3/search',
+                 {tableFormat: true, valueCols: [0], 
+                   colHeaders: ['Mutation&nbsp;ID', 'Description', 'Mutation&nbsp;Type']
+                 });
+
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=cosmic_struct">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+
+            </td>
+            <td>Somatic mutation data from <a
+                href="http://grch37-cancer.sanger.ac.uk/cosmic">COSMIC</a>.
+              Please note that it is not permitted to use this service to try to reconstruct
+              the COSMIC data file.  Please see <a
+              href="http://grch37-cancer.sanger.ac.uk/cosmic/license">COSMIC's license
+              page</a> for information about access to the
+              full data file.
+              <div class="data_versions">Data version: v104 (2026-05-19); 643,608 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/cytogenetic_locs/v3/doc.html">Cytogenetic
+              locations</a></td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                                  <input type="text" id="cytogeneticLoc"
+               placeholder="Cytogenetic location (e.g., 2p...)">
+
+                    <script>
+                                      new Def.Autocompleter.Search('cytogeneticLoc',
+                  '/api/cytogenetic_locs/v3/search',
+                  {tableFormat: true, valueCols: [0]});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+              <input type="text" id="cytogeneticLoc"
+               placeholder="Cytogenetic location (e.g., 2p...)">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >                new Def.Autocompleter.Search('cytogeneticLoc',
+                  '/api/cytogenetic_locs/v3/search',
+                  {tableFormat: true, valueCols: [0]});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=cytogenetic_locs">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From <a href="ftp://ftp.ncbi.nlm.nih.gov/pub/gdp/">NCBI's genome
+              ideogram data</a> for the <a
+              href="http://www.ncbi.nlm.nih.gov/genome/tools/gdp/">Genome Decoration
+              Page</a>.
+              <div class="data_versions">Data version: 1 (2014-06-02); 862 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/dbvar/v3/doc.html">dbVar</a>
+              <div class="sub-desc">Genomic structural variations from NCBI's dbVar</div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                                  <input type="text" id="dbvar" placeholder="Name (e.g. nssv1...)">
+
+                    <script>
+                                      new Def.Autocompleter.Search('dbvar',
+                 '/api/dbvar/v3/search',
+                 {nonMatchSuggestions: false, tableFormat: true, valueCols: [0],
+                  colHeaders: ['Name', 'Origin', 'Zygosity']});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+              <input type="text" id="dbvar" placeholder="Name (e.g. nssv1...)">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >                new Def.Autocompleter.Search('dbvar',
+                 '/api/dbvar/v3/search',
+                 {nonMatchSuggestions: false, tableFormat: true, valueCols: [0],
+                  colHeaders: ['Name', 'Origin', 'Zygosity']});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=dbvar">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From NCBI <a href="http://www.ncbi.nlm.nih.gov/dbvar/">dbVar</a>
+              <div class="data_versions">Data version: 2026-09-02; 49,195,857 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/disease_names/v3/doc.html">Genetic diseases</a>
+              <div class="sub-desc">Over 24,000; a subset of NCBI's ClinVar genetic diseases file</div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="disease" placeholder="Disease">
+
+                    <script>
+                      new Def.Autocompleter.Search('disease',
+ '/api/disease_names/v3/search?df=DiseaseName,ConceptID',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Name', 'Concept ID']});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="disease" placeholder="Disease">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('disease',
+ '/api/disease_names/v3/search?df=DiseaseName,ConceptID',
+ {tableFormat: true, valueCols: [0], colHeaders: ['Name', 'Concept ID']});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=disease_names">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            <td>From NCBI <a href="http://www.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>
+              <div class="data_versions">Data version: 2026-10-07; 46,688 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/genes/v4/doc.html">Genes</a>
+              <div class="sub-desc">Symbols and regions from HGNC's dataset</div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                                  <input type="text" id="symbol" placeholder="Gene symbol">
+
+
+                    <script>
+                                      new Def.Autocompleter.Search('symbol',
+                 '/api/genes/v4/search' +
+                 '?df=hgnc_id,symbol,name,refseq_accession',
+                 {tableFormat: true, valueCols: [0],
+                   colHeaders: ['HGNC&nbsp;ID', 'Symbol', 'Name', 'RefSeq']
+                 });
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+              <input type="text" id="symbol" placeholder="Gene symbol">
+
+              </textarea>
+              <textarea name="js" style="display: none"
+                >                new Def.Autocompleter.Search('symbol',
+                 '/api/genes/v4/search' +
+                 '?df=hgnc_id,symbol,name,refseq_accession',
+                 {tableFormat: true, valueCols: [0],
+                   colHeaders: ['HGNC&nbsp;ID', 'Symbol', 'Name', 'RefSeq']
+                 });
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=genes">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+
+            </td>
+            <td>From <a href="http://www.genenames.org/">HGNC</a>
+              <div class="data_versions">Data version: 2026-10-06; 45,233 records</div>
+
+            </td>
+          </tr>
+          <!--
+          <tr>
+            <td><a class="api_title"; href="apidoc/hla/v3/doc.html">HLA (Human Leukocyte Antigen)</a></td>
+            <td>
+              <!--#include virtual="autocompDemos/autocomp_hla.html" ->
+            </td>
+            <td>From <a href="http://www.ebi.ac.uk/ipd/imgt/hla/">IPD-IMGT</a></td>
+          </tr>
+          -->
+          <tr>
+            <td><a class="api_title"; href="apidoc/ncbi_genes/v3/doc.html">NCBI Genes</a>
+              <div class="sub-desc">Human gene information from NCBI</div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                                  <input type="text" id="ncbi_gene" placeholder="Gene symbol">
+
+                    <script>
+                                      new Def.Autocompleter.Search('ncbi_gene',
+                 '/api/ncbi_genes/v3/search',
+                 {tableFormat: true, valueCols: [3],
+                   colHeaders: ['Code&nbsp;System', 'Gene&nbsp;Code', 'Chromosome', 'Symbol', 'Description', 'Type&nbsp;of&nbsp;Gene']
+                 });
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+              <input type="text" id="ncbi_gene" placeholder="Gene symbol">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >                new Def.Autocompleter.Search('ncbi_gene',
+                 '/api/ncbi_genes/v3/search',
+                 {tableFormat: true, valueCols: [3],
+                   colHeaders: ['Code&nbsp;System', 'Gene&nbsp;Code', 'Chromosome', 'Symbol', 'Description', 'Type&nbsp;of&nbsp;Gene']
+                 });
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=ncbi_genes">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+
+            </td>
+            <td>From <a href="https://www.ncbi.nlm.nih.gov/gene">NCBI Gene</a>
+              <div class="data_versions">Data version: 2026-10-09; 193,925 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/refseqs/v3/doc.html">RefSeq</a>
+              <div class="sub-desc">NCBI accession numbers for the human genome, build GRCh37</div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                                  <input type="text" id="refseq" placeholder="RefSeq">
+
+                    <script>
+                                      new Def.Autocompleter.Search('refseq',
+                 '/api/refseqs/v3/search',
+                 {tableFormat: true, valueCols: [0],
+                   colHeaders: ['RefSeq', 'Gene', 'NP RefSeq', 'NC RefSeq']
+                 });
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+              <input type="text" id="refseq" placeholder="RefSeq">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >                new Def.Autocompleter.Search('refseq',
+                 '/api/refseqs/v3/search',
+                 {tableFormat: true, valueCols: [0],
+                   colHeaders: ['RefSeq', 'Gene', 'NP RefSeq', 'NC RefSeq']
+                 });
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=refseqs">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+
+            </td>
+            <td>From <a href="https://www.ncbi.nlm.nih.gov/genome/">Genome</a>
+              <div class="data_versions">Data version: 2012-03-06; 82,202 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/snps/v3/doc.html">SNPs</a>
+              <div class="sub-desc">From NCBI's dbSNP</div>
+            </td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                                  <input type="text" id="snp" placeholder="rs number">
+
+                    <script>
+                                      let displayFields = ['rsNum', '38.chr', '38.pos', '38.alleles', '38.gene'];
+                new Def.Autocompleter.Search('snp',
+                 '/api/snps/v3/search?df=' + displayFields.join(','),
+                 {tableFormat: true, valueCols: [0], colHeaders: displayFields});
+
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+              <input type="text" id="snp" placeholder="rs number">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >                let displayFields = ['rsNum', '38.chr', '38.pos', '38.alleles', '38.gene'];
+                new Def.Autocompleter.Search('snp',
+                 '/api/snps/v3/search?df=' + displayFields.join(','),
+                 {tableFormat: true, valueCols: [0], colHeaders: displayFields});
+
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+                    <div class="acim_customize"><a href="/demo.html?db=snps">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+
+            </td>
+            </td>
+            <td>From NCBI <a href="http://www.ncbi.nlm.nih.gov/SNP/">dbSNP</a>
+              <div class="data_versions">Data version: 2018-03-12; 650,265,778 records</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td><a class="api_title"; href="apidoc/star_alleles/v3/doc.html">PharmVar Star Alleles</a></td>
+            <td>
+                          <div class="acim_container">
+                <div class="acim_input">
+                    <input type="text" id="star_alleles" placeholder="Star allele name">
+
+                    <script>
+                      new Def.Autocompleter.Search('star_alleles', '/api/star_alleles/v3/search',
+  {tableFormat: true, valueCols: [0], colHeaders: ['StarAlleleName', 'cDNANucleotideChanges', 'GeneNucleotideChange', 'OtherNames', 'ProteinChange']});
+
+                    </script>
+                </div>
+                <div class="acim_links_container">
+                                <form style="display: inline" method="post"
+                action="https://jsfiddle.net/api/post/library/pure/" target=_blank>
+              <button type="submit" class="link">Source&nbsp;code</button>
+              <textarea name="html" style="display: none"
+                ><link href='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.css' rel="stylesheet">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://clinicaltables.nlm.nih.gov/autocomplete-lhc-versions/19.2.4/autocomplete-lhc.min.js'></script>
+
+<input type="text" id="star_alleles" placeholder="Star allele name">
+              </textarea>
+              <textarea name="js" style="display: none"
+                >new Def.Autocompleter.Search('star_alleles', '/api/star_alleles/v3/search',
+  {tableFormat: true, valueCols: [0], colHeaders: ['StarAlleleName', 'cDNANucleotideChanges', 'GeneNucleotideChange', 'OtherNames', 'ProteinChange']});
+              </textarea>
+              <input name=wrap type="hidden" value='b'>
+            </form>
+
+
+                    <div class="acim_customize"><a href="/demo.html?db=star_alleles">Customize</a></div>
+                </div>
+                <div style="float:none"></div>
+            </div>
+
+            </td>
+            </td>
+            <td>From <a href="https://www.pharmvar.org/genes">the PharmVar CYP data</a>
+              <div class="data_versions">Data version: 2017-06-22; 1,019 records</div>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+<div id=version>CTSS version: 9.21.2
+ (<a
+ href=CHANGELOG_for_users.html>changes</a>)</div>
+<div style="margin-top:0.5em">
+Last updated: 2026-10-16
+
+</div>
+
+    </div>
+
+    <!-- page footer -->
+    <div id="sharedFooter"></div>
+    <!-- end page footer -->
+
+    <!-- extra space to allow a named anchor to move that portion to the top of
+    the window. -->
+    <div id="blankspace"></div>
+    <script src="/javascript/sourceLinkInit.min.js"></script>
+    <script src="/shared/loadShared.min.js"></script>
+  </body>
+</html>
+

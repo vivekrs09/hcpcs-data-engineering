@@ -1,0 +1,26 @@
+
+services:
+  postgres:
+    image: postgres:18
+    container_name: hcpcs-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: hcpcs_db
+      POSTGRES_USER: hcpcs
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - hcpcs_data:/var/lib/postgresql
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hcpcs -d hcpcs_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  hcpcs_data:
